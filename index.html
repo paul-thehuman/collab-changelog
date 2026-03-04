@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Co.LLab — What's New</title>
+<meta name="description" content="Latest updates, features, and improvements to Co.LLab — the AI-powered course authoring tool by The Human Co.">
+<meta property="og:title" content="Co.LLab — What's New">
+<meta property="og:description" content="See what's new in Co.LLab, the AI-powered course authoring tool.">
+<meta property="og:type" content="website">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f0f2f5;
+    --surface: #ffffff;
+    --surface-hover: #f7f8fa;
+    --border: #e1e4e8;
+    --border-light: #eef0f3;
+    --text: #1a1d23;
+    --text-muted: #5e6370;
+    --text-dim: #9198a1;
+    --accent: #6c5ce7;
+    --accent-light: rgba(108, 92, 231, 0.08);
+    --accent-border: rgba(108, 92, 231, 0.25);
+    --red: #e74c3c;
+    --red-bg: rgba(231, 76, 60, 0.08);
+    --red-border: rgba(231, 76, 60, 0.2);
+    --orange: #e67e22;
+    --orange-bg: rgba(230, 126, 34, 0.08);
+    --orange-border: rgba(230, 126, 34, 0.2);
+    --yellow: #d4a017;
+    --yellow-bg: rgba(212, 160, 23, 0.08);
+    --green: #27ae60;
+    --green-bg: rgba(39, 174, 96, 0.08);
+    --green-border: rgba(39, 174, 96, 0.2);
+    --blue: #2e86de;
+    --blue-bg: rgba(46, 134, 222, 0.08);
+    --blue-border: rgba(46, 134, 222, 0.2);
+    --purple: #8e44ad;
+    --purple-bg: rgba(142, 68, 173, 0.08);
+    --grey: #636e72;
+    --grey-bg: rgba(99, 110, 114, 0.08);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .header-logo {
+    width: 42px; height: 42px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.95rem; color: #fff;
+    margin-bottom: 0.6rem;
+  }
+  .header h1 { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
+  .header h1 span { color: var(--text-muted); font-weight: 400; }
+  .header-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.35rem;
+  }
+
+  /* ── Content ── */
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 2rem 4rem;
+  }
+
+  /* ── Summary stats ── */
+  .summary-bar {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .summary-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.825rem; color: var(--text-muted);
+  }
+  .summary-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .summary-num { font-weight: 700; color: var(--text); }
+
+  /* ── Day block ── */
+  .day-block {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .day-block::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2rem;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .day-block:last-child::before { display: none; }
+
+  .day-dot {
+    position: absolute;
+    left: 0; top: 0.35rem;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--accent-border);
+  }
+
+  .day-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .day-date { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+  .day-version {
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: var(--accent-light); color: var(--accent);
+    padding: 0.15rem 0.55rem; border-radius: 4px;
+  }
+
+  /* ── Entry card ── */
+  .entry {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.6rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .entry:last-child { margin-bottom: 0; }
+
+  .entry-icon {
+    width: 26px; height: 26px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+  .icon-feature { background: var(--blue-bg); color: var(--blue); }
+  .icon-fix { background: var(--green-bg); color: var(--green); }
+  .icon-improvement { background: var(--purple-bg); color: var(--purple); }
+  .icon-chore { background: var(--grey-bg); color: var(--grey); }
+
+  .entry-body { flex: 1; min-width: 0; }
+  .entry-title { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.2rem; line-height: 1.4; }
+  .entry-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; }
+  .entry-meta { display: flex; gap: 0.5rem; margin-top: 0.4rem; flex-wrap: wrap; }
+  .entry-tag {
+    font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.04em; padding: 0.1rem 0.45rem; border-radius: 3px;
+  }
+  .tag-feature { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+  .tag-fix { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .tag-improvement { background: var(--purple-bg); color: var(--purple); border: 1px solid rgba(142,68,173,0.2); }
+  .tag-thanks {
+    font-size: 0.6rem; font-weight: 500; color: var(--text-dim);
+    padding: 0.1rem 0.4rem; border: 1px solid var(--border); border-radius: 3px;
+  }
+
+  /* ── Roadmap section ── */
+  .roadmap-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border);
+  }
+  .roadmap-title {
+    font-size: 1.05rem; font-weight: 700;
+    margin-bottom: 0.35rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .roadmap-title-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+  .roadmap-sub {
+    font-size: 0.825rem; color: var(--text-muted); margin-bottom: 1.25rem;
+  }
+  .roadmap-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .roadmap-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 0.75rem 1rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .roadmap-item-title { font-size: 0.875rem; font-weight: 600; margin-bottom: 0.15rem; }
+  .roadmap-item-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.55; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    border-top: 1px solid var(--border-light);
+    margin-top: 2rem;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .content { padding: 1rem; }
+    .header { padding: 1.25rem 1rem; }
+    .summary-bar { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">CL</div>
+  <h1>Co.LLab <span>What's New</span></h1>
+  <p class="header-sub">AI-powered course authoring tool by The Human Co.</p>
+</div>
+
+<div class="content">
+
+  <div class="summary-bar">
+    <div class="summary-item"><span class="summary-dot" style="background:var(--blue)"></span> <span class="summary-num">4</span> Features</div>
+    <div class="summary-item"><span class="summary-dot" style="background:var(--green)"></span> <span class="summary-num">3</span> Fixes</div>
+    <div class="summary-item"><span class="summary-dot" style="background:var(--purple)"></span> <span class="summary-num">4</span> Improvements</div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- DAY: 4 March 2026                                    -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <div class="day-block">
+    <div class="day-dot"></div>
+    <div class="day-header">
+      <span class="day-date">4 March 2026</span>
+      <span class="day-version">v0.3.2</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon icon-feature">+</div>
+      <div class="entry-body">
+        <div class="entry-title">AI-generated stories for every module</div>
+        <div class="entry-desc">New courses now automatically generate a Three-Act Story for each module &mdash; complete with branching scenarios, narrative arcs, and character-driven learning. No manual story creation needed.</div>
+        <div class="entry-meta">
+          <span class="entry-tag tag-feature">Feature</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon icon-fix">&#10003;</div>
+      <div class="entry-body">
+        <div class="entry-title">Fixed Pexels API link</div>
+        <div class="entry-desc">The "Get a free API key" link for Pexels was pointing to the wrong page. Now correctly links to the API key dashboard.</div>
+        <div class="entry-meta">
+          <span class="entry-tag tag-fix">Fix</span>
+          <span class="entry-tag tag-thanks">Thanks Clemens M.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon icon-improvement">&#9889;</div>
+      <div class="entry-body">
+        <div class="entry-title">Improved IP and licence protection</div>
+        <div class="entry-desc">Updated the project licence and repository settings to properly protect proprietary content and methodology.</div>
+        <div class="entry-meta">
+          <span class="entry-tag tag-improvement">Improvement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- DAY: 3 March 2026                                    -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <div class="day-block">
+    <div class="day-dot"></div>
+    <div class="day-header">
+      <span class="day-date">3 March 2026</span>
+      <span class="day-version">v0.3.2</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon icon-feature">+</div>
+      <div class="entry-body">
+        <div class="entry-title">Three-Act Story System</div>
+        <div class="entry-desc">Every module now features a structured storytelling experience. <strong>ACT I:</strong> an interactive branching scenario that draws you in. <strong>ACT II:</strong> a narrative that weaves through the learning content. <strong>ACT III:</strong> a closing scenario with reflection. You're always the protagonist.</div>
+        <div class="entry-meta">
+          <span class="entry-tag tag-feature">Feature</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon icon-feature">+</div>
+      <div class="entry-body">
+        <div class="entry-title">Audio narration</div>
+        <div class="entry-desc">Modules now support AI-generated voiceover narration for opening and closing sections. Audio players appear automatically when narration is available.</div>
+        <div class="entry-meta">
+          <span class="entry-tag tag-feature">Feature</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon icon-improvement">&#9889;</div>
+      <div class="entry-body">
+        <div class="entry-title">Flashcard flip animations</div>
+        <div class="entry-desc">Flashcard interactions now have smooth flip animations, making them feel more tactile and engaging.</div>
+        <div class="entry-meta">
+          <span class="entry-tag tag-improvement">Improvement</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon icon-fix">&#10003;</div>
+      <div class="entry-body">
+        <div class="entry-title">Fixed multiple branching scenarios per module</div>
+        <div class="entry-desc">Previously only one branching scenario could appear per module page. Now both opening and closing scenarios work correctly together.</div>
+        <div class="entry-meta">
+          <span class="entry-tag tag-fix">Fix</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon icon-fix">&#10003;</div>
+      <div class="entry-body">
+        <div class="entry-title">Fixed audio not playing on some modules</div>
+        <div class="entry-desc">Audio narration wasn't appearing on modules 4&ndash;6 due to a data format mismatch. All modules now render audio correctly.</div>
+        <div class="entry-meta">
+          <span class="entry-tag tag-fix">Fix</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon icon-improvement">&#9889;</div>
+      <div class="entry-body">
+        <div class="entry-title">Story reference template bundled</div>
+        <div class="entry-desc">The elearning story template document is now included with the app for reference, so you can see the methodology behind the storytelling framework.</div>
+        <div class="entry-meta">
+          <span class="entry-tag tag-improvement">Improvement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- Prior releases                                       -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <div class="day-block">
+    <div class="day-dot" style="background: var(--grey); box-shadow: 0 0 0 2px rgba(99,110,114,0.2);"></div>
+    <div class="day-header">
+      <span class="day-date">Earlier releases</span>
+      <span class="day-version" style="background:var(--grey-bg); color:var(--grey);">v0.3.1</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon icon-feature">+</div>
+      <div class="entry-body">
+        <div class="entry-title">Desktop app for Windows and Mac</div>
+        <div class="entry-desc">Full desktop application with guided setup, API key management, and one-click course building.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="entry-icon icon-feature">+</div>
+      <div class="entry-body">
+        <div class="entry-title">Human-in-the-loop workflow</div>
+        <div class="entry-desc">Create blueprints, trigger AI-powered builds with real-time progress, then review and edit the generated content before finalising.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="entry-icon icon-feature">+</div>
+      <div class="entry-body">
+        <div class="entry-title">SCORM 1.2 export</div>
+        <div class="entry-desc">Export finished courses as SCORM-compliant packages ready for upload to any LMS.</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="entry-icon icon-feature">+</div>
+      <div class="entry-body">
+        <div class="entry-title">Automatic stock imagery</div>
+        <div class="entry-desc">Connect a free Pexels API key and Co.LLab automatically sources professional photos to match your course content.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- Roadmap                                               -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <div class="roadmap-section">
+    <div class="roadmap-title">
+      <span class="roadmap-title-dot"></span>
+      Coming Soon
+    </div>
+    <p class="roadmap-sub">Here's what we're working on next. Got a feature request? Let us know!</p>
+    <div class="roadmap-list">
+
+      <div class="roadmap-item">
+        <div class="roadmap-item-title">Code-signed installers</div>
+        <div class="roadmap-item-desc">Properly signed installers for both Windows and Mac so you won't see security warnings when installing Co.LLab.</div>
+      </div>
+
+      <div class="roadmap-item">
+        <div class="roadmap-item-title">Structured feedback collection</div>
+        <div class="roadmap-item-desc">A simple way for beta testers to share feedback, report bugs, and request features directly from within the app.</div>
+      </div>
+
+      <div class="roadmap-item">
+        <div class="roadmap-item-title">Improved course re-rendering</div>
+        <div class="roadmap-item-desc">Smarter rebuild pipeline that only re-processes the modules you've changed, making edits faster.</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Built with care by <a href="https://www.linkedin.com/company/the-human-co/" target="_blank">The Human Co.</a> &middot; Powered by Claude
+</div>
+
+</body>
+</html>
